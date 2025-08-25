@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Bhagya - Professional Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'elegant-red': '#31a1b8',
+                        'elegant-red-dark': '#2a8ca3',
+                        'elegant-red-light': '#8bc03f'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .heading-font {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        .brand-font {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(49, 161, 184, 0.15);
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #31a1b8 0%, #8bc03f 100%);
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #31a1b8;
+            font-weight: 600;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out;
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(49, 161, 184, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(49, 161, 184, 0.6); }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center cursor-pointer" onclick="showPage('home')">
+                    <img src="https://lh3.googleusercontent.com/d/1x946GlwCJ_Bx1wwJluEt2qx5JJRwN7p_" alt="Vision Bhagya Logo" class="w-12 h-12 object-contain mr-3" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                    <div class="w-12 h-12 bg-elegant-red rounded-lg flex items-center justify-center mr-3 text-white font-bold text-lg" style="display: none;">VB</div>
+                    <h1 class="text-2xl font-bold text-gray-900 brand-font tracking-wide">Vision Bhagya</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#" class="nav-link text-gray-700 hover:text-elegant-red transition-colors" onclick="showPage('home')">Home</a>
+                    <div class="relative group">
+                        <a href="#" class="nav-link text-gray-700 hover:text-elegant-red transition-colors">Services ▼</a>
+                        <div class="absolute top-full left-0 bg-white shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('translation')">Language Translation</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('web-dev')">Website Development</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('branding')">Brand Design</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('content')">Content Writing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('catalogue')">Catalogue Design</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('marketing')">Digital Marketing</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('training')">Corporate Training</a>
+                            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-elegant-red" onclick="showPage('mobile')">Mobile App Development</a>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-link text-gray-700 hover:text-elegant-red transition-colors" onclick="showPage('about')">About</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-elegant-red transition-colors" onclick="showPage('contact')">Contact</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="https://wa.me/919307485332" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.594z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
+                    <button class="bg-elegant-red text-white px-6 py-2 rounded-lg hover:bg-elegant-red-dark transition-colors" onclick="showPage('contact')">
+                        Get Quote
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="slide-in-left">
+                        <h2 class="text-5xl font-bold mb-6 heading-font leading-tight">Transform Your Vision Into Reality</h2>
+                        <p class="text-xl mb-8 opacity-90">
+                            From translating your content into 50+ languages to building stunning websites, creating memorable brands, 
+                            and training your team for global success - we're your complete business growth partner. Whether you need 
+                            digital marketing that drives results, professional catalogues that sell, or mobile apps that engage customers, 
+                            we deliver excellence with creativity and care.
+                        </p>
+                        <button class="bg-white text-elegant-red px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 pulse-glow" onclick="showPage('about')">
+                            Explore Our Services
+                        </button>
+                    </div>
+                    <div class="relative slide-in-right">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 overflow-hidden">
+                            <!-- Auto-scrolling Service Images Carousel -->
+                            <div class="relative w-full h-[35.4rem] rounded-xl overflow-hidden">
+                                <div class="carousel-container absolute inset-0">
+                                    <!-- Service Image 1: Translation -->
+                                    <div class="carousel-slide absolute inset-0 opacity-100 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Language Translation Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Language Translation</h4>
+                                                <p class="text-sm opacity-90">Professional translation in 50+ languages</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Service Image 2: Web Development -->
+                                    <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Website Development Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Website Development</h4>
+                                                <p class="text-sm opacity-90">Custom websites with modern design</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Service Image 3: Brand Design -->
+                                    <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Brand Design Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Brand Design</h4>
+                                                <p class="text-sm opacity-90">Complete brand identity solutions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Service Image 4: Digital Marketing -->
+                                    <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2106&q=80" alt="Digital Marketing Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Digital Marketing</h4>
+                                                <p class="text-sm opacity-90">Data-driven marketing campaigns</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Service Image 5: Mobile Apps -->
+                                    <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Mobile App Development Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Mobile App Development</h4>
+                                                <p class="text-sm opacity-90">iOS & Android applications</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Service Image 6: Content Writing -->
+                                    <div class="carousel-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                                        <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Content Writing Services" class="w-full h-full object-cover">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                                            <div class="p-6 text-white">
+                                                <h4 class="text-xl font-bold mb-2">Content Writing</h4>
+                                                <p class="text-sm opacity-90">SEO-optimized engaging content</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Carousel Indicators -->
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-100 transition-opacity duration-300"></div>
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-50 transition-opacity duration-300"></div>
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-50 transition-opacity duration-300"></div>
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-50 transition-opacity duration-300"></div>
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-50 transition-opacity duration-300"></div>
+                                    <div class="carousel-indicator w-2 h-2 bg-white rounded-full opacity-50 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-bold text-gray-900 mb-4 heading-font">Our Professional Services</h3>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Comprehensive solutions tailored to meet your business needs and drive growth
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-1" onclick="showPage('translation')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Translation" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Language Translation</h4>
+                        <p class="text-gray-600 mb-4">Professional translation services across 50+ languages with native speakers and cultural expertise. We handle documents, websites, marketing materials, and technical content with precision and cultural sensitivity.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Document Translation</li>
+                            <li>• Website Localization</li>
+                            <li>• Technical Manuals</li>
+                            <li>• Marketing Content</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-2" onclick="showPage('web-dev')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Web Development" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Website Development</h4>
+                        <p class="text-gray-600 mb-4">Custom websites built with modern technologies, responsive design, and SEO optimization. From simple landing pages to complex e-commerce platforms, we create digital experiences that convert visitors into customers.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Responsive Web Design</li>
+                            <li>• E-commerce Solutions</li>
+                            <li>• CMS Development</li>
+                            <li>• SEO Optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-3" onclick="showPage('branding')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Branding Design" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Brand Design</h4>
+                        <p class="text-gray-600 mb-4">Complete brand identity solutions that make your business memorable. We create cohesive visual identities including logos, color schemes, typography, and brand guidelines that reflect your company's values and vision.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Logo Design & Brand Marks</li>
+                            <li>• Brand Guidelines</li>
+                            <li>• Business Card Design</li>
+                            <li>• Marketing Collateral</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-4" onclick="showPage('content')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Content Writing" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Content Writing</h4>
+                        <p class="text-gray-600 mb-4">Engaging, SEO-optimized content that tells your story and drives results. Our expert writers create compelling copy for websites, blogs, social media, and marketing campaigns that resonate with your target audience.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Website Copy & Blog Posts</li>
+                            <li>• Social Media Content</li>
+                            <li>• Email Marketing Copy</li>
+                            <li>• Product Descriptions</li>
+                        </ul>
+                    </div>
+
+                    <!-- International Services Showcase -->
+                    <div class="bg-gradient-to-br from-elegant-red to-elegant-red-light rounded-xl p-8 shadow-lg text-white text-center scale-in stagger-5">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6 bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Global Services" class="w-full h-full object-cover rounded-lg opacity-80" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 rounded-lg flex flex-col items-center justify-center" style="display: none;">
+                                <svg class="w-16 h-16 text-white mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <div class="text-2xl font-bold">🌍</div>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-4 brand-font">Global Services</h4>
+                        <p class="mb-4 opacity-90">We proudly serve clients worldwide, delivering professional services across continents with the same quality and dedication.</p>
+                        <div class="flex justify-center space-x-4 text-sm">
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇺🇸 USA</span>
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇬🇧 UK</span>
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇦🇺 Australia</span>
+                        </div>
+                        <div class="flex justify-center space-x-4 text-sm mt-2">
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇨🇦 Canada</span>
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇩🇪 Germany</span>
+                            <span class="bg-white/20 px-3 py-1 rounded-full">🇮🇳 India</span>
+                        </div>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-6" onclick="showPage('catalogue')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Catalogue Design" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Catalogue Design</h4>
+                        <p class="text-gray-600 mb-4">Professional catalogue designs that showcase your products beautifully and drive sales. We create both print and digital catalogues with stunning layouts, professional photography integration, and compelling product presentations.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Product Catalogues</li>
+                            <li>• Digital Flipbooks</li>
+                            <li>• Service Portfolios</li>
+                            <li>• Interactive Catalogues</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-7" onclick="showPage('marketing')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2106&q=80" alt="Digital Marketing" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Digital Marketing</h4>
+                        <p class="text-gray-600 mb-4">Data-driven digital marketing strategies that boost your online presence and generate leads. We manage SEO, social media, PPC campaigns, and email marketing to maximize your ROI and grow your business.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• SEO & Content Marketing</li>
+                            <li>• Social Media Management</li>
+                            <li>• Google Ads & PPC</li>
+                            <li>• Email Marketing Campaigns</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer scale-in stagger-8" onclick="showPage('training')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Corporate Training" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Corporate Training</h4>
+                        <p class="text-gray-600 mb-4">Professional foreign language training programs for corporate teams. We provide customized language courses to help your employees communicate effectively in global markets and international business environments.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• Business Language Courses</li>
+                            <li>• Cultural Communication Training</li>
+                            <li>• Industry-Specific Vocabulary</li>
+                            <li>• Online & In-Person Sessions</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card bg-white rounded-xl p-8 shadow-lg cursor-pointer bounce-in stagger-9" onclick="showPage('mobile')">
+                        <div class="w-full h-48 rounded-lg overflow-hidden mb-6">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Mobile App Development" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-48 bg-elegant-red rounded-lg flex items-center justify-center" style="display: none;">
+                                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-4 brand-font">Mobile App Development</h4>
+                        <p class="text-gray-600 mb-4">Native and cross-platform mobile applications that deliver exceptional user experiences. From concept to app store deployment, we build feature-rich apps for iOS and Android with modern UI/UX design.</p>
+                        <ul class="text-gray-600 text-sm space-y-1">
+                            <li>• iOS & Android Apps</li>
+                            <li>• Cross-Platform Solutions</li>
+                            <li>• UI/UX Design</li>
+                            <li>• App Store Optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Additional pages would continue here... -->
+    <!-- For brevity, I'm showing just the home page with the carousel -->
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                selectedPage.classList.add('fade-in');
+                
+                // Remove fade-in class after animation
+                setTimeout(() => {
+                    selectedPage.classList.remove('fade-in');
+                }, 500);
+            }
+
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Auto-scrolling carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.style.opacity = '0';
+            });
+            
+            // Show current slide
+            slides[index].style.opacity = '1';
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                indicator.style.opacity = i === index ? '1' : '0.5';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides every 4 seconds
+        setInterval(nextSlide, 4000);
+
+        // Initialize carousel on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974ac7c733ac444f',t:'MTc1NjEyMTY2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
